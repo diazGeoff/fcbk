@@ -59,6 +59,27 @@ app.post('/user/post' , function ( request , response ) {
 	response.json(request.body);
 } );
 
+app.post('/post/like' , function ( request , response ) {
+	posts.map( 
+		function find ( post ) {			
+			if ( post.id == request.body.id ){
+				var status;
+				var index = _.indexOf(post.like , request.body.userLike);
+				if (index < 0) {
+					post.like.push( request.body.userLike );
+					status = "Unlike";
+				}else {
+					_.remove(post.like , function ( like ) {
+						return like == request.body.userLike;
+					} );
+					status = "Like";
+				}
+				response.json( { status: status } );
+			}
+			return post;
+		} );	
+} );
+
 app.get('/get/all/post' , function ( request , response ) {
 	response.json( posts );
 } );

@@ -48,7 +48,10 @@ facebook
 					
 					scope.mainScope.$on( "set-user-data" , 
 						function on ( evt , data ) {
-							if ( data ) element.removeClass("hidden");
+							if ( data ) {
+								element.removeClass("hidden");
+								scope.mainScope.$broadcast( "user-logged" );
+							}
 						} );	
 				}
 			};
@@ -70,6 +73,26 @@ facebook
 				"scope": true,
 				"templateUrl": "script/temp/post-area.html",
 				"controller": "postAreaController"
+			};
+		}
+	])
+	.directive('likeButton' , [
+		function directive ( ) {
+			return {
+				"restrict": "A",
+				"scope": "=",
+				"controller": "likeController",
+				"link": function onLink ( scope , element , attributeSet ) {
+					element.bind("click" , 
+						function onClick ( ) {							
+							scope.$broadcast( "like-post" , scope.post );
+						} );
+
+					scope.$on( "change-status" , 
+						function on ( evt , data ) {
+							element[0].innerHTML = data.status;
+						} );
+				}
 			};
 		}
 	]);
