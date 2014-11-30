@@ -1,0 +1,18 @@
+{
+  "name": "facebook",
+  "version": "1.0.0",
+  "authors": [
+    "diazGeoff <diazgeoff93@gmail.com>"
+  ],
+  "description": "imitate facebook",
+  "keywords": [
+    "facebook"
+  ],
+  "dependencies": {
+    "angular": "~1.3.4",
+    "jquery": "~2.1.1",
+    "lodash": "~2.4.1",
+    "angular-sanitize": "~1.3.4"
+  },
+  "license": "MIT"
+}
